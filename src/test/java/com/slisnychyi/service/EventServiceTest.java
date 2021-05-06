@@ -16,10 +16,10 @@ class EventServiceTest {
     private static final String ANOTHER_USER_NAME = "another_username";
     private static final String TASK_NAME = "buy food";
 
+    private EventService eventService = new EventService(new StubEventRepository());
+
     @Test
     public void should_getUserEvents_whenPreviouslyStoredEvents() {
-        EventService eventService = new EventService(new StubEventRepository());
-
         StepVerifier.create(eventService.saveEvent(USER_NAME, new EventRequest(TASK_NAME, 200)))
                 .assertNext(e -> assertThat(e).isNotEmpty())
                 .verifyComplete();
@@ -33,8 +33,6 @@ class EventServiceTest {
 
     @Test
     public void should_calculateEventStatistic_whenPreviouslyStoredEvents() {
-        EventService eventService = new EventService(new StubEventRepository());
-
         Stream.of(Tuples.of("play football", 10), Tuples.of("do homework", 20))
                 .forEach(tuple2 -> {
                     StepVerifier.create(eventService.saveEvent(USER_NAME, new EventRequest(tuple2.getT1(), tuple2.getT2())))
@@ -52,6 +50,13 @@ class EventServiceTest {
 
         StepVerifier.create(eventService.getEventsStatistics())
                 .expectNext(new EventStatistic(USER_NAME, 2, 30), new EventStatistic(ANOTHER_USER_NAME, 1, 5))
+                .verifyComplete();
+    }
+
+    @Test
+    public void should_calculateEventStatistic_whenNoEventsExists() {
+        StepVerifier.create(eventService.getEventsStatistics())
+                .expectNextCount(0)
                 .verifyComplete();
     }
 

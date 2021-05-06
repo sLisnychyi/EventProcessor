@@ -1,4 +1,4 @@
-# GraalVM Internship: Minimal Micronaut application
+#### GraalVM Internship: Minimal Micronaut application
 
 Sample Micronout app for storing task events and generation statistics based on them. 
 

@@ -1,5 +1,7 @@
 package com.slisnychyi.model;
 
+import java.util.Objects;
+
 public class Event {
     private String uuid;
     private String username;
@@ -37,5 +39,21 @@ public class Event {
 
     public int getDuration() {
         return duration;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Event event = (Event) o;
+        return duration == event.duration &&
+                Objects.equals(uuid, event.uuid) &&
+                Objects.equals(username, event.username) &&
+                Objects.equals(task, event.task);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(uuid, username, task, duration);
     }
 }

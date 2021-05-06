@@ -1,5 +1,6 @@
 package com.slisnychyi.model;
 
+import java.util.Objects;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.PositiveOrZero;
 
@@ -23,5 +24,19 @@ public class EventRequest {
 
     public int getDuration() {
         return duration;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        EventRequest that = (EventRequest) o;
+        return duration == that.duration &&
+                Objects.equals(task, that.task);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(task, duration);
     }
 }
