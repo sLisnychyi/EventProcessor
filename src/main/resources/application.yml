@@ -1,0 +1,11 @@
+micronaut:
+  application:
+    name: event_processor
+
+credentials:
+  users:
+    test: test
+    admin: admin
+  roles:
+    test: USER
+    admin: ADMIN
