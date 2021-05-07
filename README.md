@@ -1,16 +1,16 @@
-#### GraalVM Internship: Minimal Micronaut application
+#### Minimal Micronaut application
 
-Sample Micronout app for storing task events and generation statistics based on them. 
+Micronaut sample app for storing task events and retrieving statistics based on them. 
 
 ![alt text](event_processor_workflow.png "workflow")
 
-### frameworks/libraries in use:
+#### frameworks/libraries in use:
 - *Micronaut core/http/security/validation* - tools necessary to build application  
 - *ProjectReactor* - for async/reactive communication
 - *Junit5/Assertj* - for testing logic    
 
 
-### endpoints:
+#### endpoints:
 Endpoints are secured by `Basic` auth.
 
 | Endpoint             | Method | URL                        | Role       |
